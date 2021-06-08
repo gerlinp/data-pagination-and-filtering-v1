@@ -35,8 +35,10 @@ Create the `addPagination` function
 This function will create and insert/append the elements needed for the pagination buttons
 */
 let linkList = document.querySelector('.link-list');
-function addPagination(list) {
+let items = linkList.getElementsByTagName('li');
 
+
+function addPagination(list) {
    let pageButtons = 5;
    linkList.innerHTML = '';
    for (let i = 1; i <= pageButtons; i++) {
@@ -47,11 +49,20 @@ function addPagination(list) {
    };
 };
 
+function addRemove(targeted) {
+   for (let i = 0; i < items.length; i++) {
+      if (items[i].classList.contains('active') ){
+         items[i].classList.remove('active');
+      };
+   };
+   let li = targeted.parentElement;
+   showPage(data, targeted.textContent);
+}
 
-linkList.addEventListener('click', function(e) {
-   showPage(data,e.target.innerHTML);
-   } 
-);
+linkList.addEventListener('click', e => {
+   addRemove(e.target)
+});
+
 
 
 // Call functions
