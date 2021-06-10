@@ -219,3 +219,13 @@ header h2 {
 		box-shadow: 0 4px 16px 0 rgba(22, 42, 90, 0.09);
 	}
 }
+
+.noResult {
+    margin: auto 0;
+    font-size: 50px;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: red;
+    letter-spacing: 2px;
+
+}
