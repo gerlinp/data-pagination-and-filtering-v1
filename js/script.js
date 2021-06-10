@@ -30,6 +30,7 @@ searchBar.addEventListener('keyup', (e) => {
    pageButtons = Math.ceil(filteredData.length / 9);
    showPage(filteredData,1)
    addPagination(filteredData)
+   addRemove(btns[0]);
 });
 /*
 showPage function 
@@ -81,7 +82,9 @@ addRemove function -
  removes active class from non active pagination buttons.
  while adding it to active pagination button.
 */
+const first = `<button type="button">1</button>`
 function addRemove(targeted) {
+   console.log(targeted)
    addPagination(filteredData);
    for (let i = 0; i < btns.length; i++) {
       if (btns[i].textContent == targeted.innerHTML) {
@@ -98,5 +101,7 @@ linkList.addEventListener('click', e => {
    }
 });
 // Call functions
-showPage(data,1);
 addPagination(data);
+addRemove(btns[0]);
+showPage(data,1);
+
