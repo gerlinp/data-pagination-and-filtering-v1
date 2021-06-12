@@ -8,7 +8,7 @@ const header = document.querySelector('.header');
 let items = linkList.getElementsByTagName('li');
 let btns = linkList.getElementsByTagName('button')
 let pageButtons = 5;
-filteredData = data;
+let filteredData = data;
 
 // search function
 header.innerHTML += `
@@ -16,16 +16,17 @@ header.innerHTML += `
   <span>Search by name</span>
   <input id="search" type="text" name="searchbar" placeholder="Search by name...">
   <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
-</label>
-`;
-const searchBar = document.getElementById('search');
+</label>`;
+
+
+const searchBar = document.querySelector('#search');
 searchBar.addEventListener('keyup', (e) => {
    const searchString = e.target.value.toLowerCase();
+   
     filteredData = data.filter( student => {
-      return (
-         student.name.first.toLowerCase().includes(searchString) ||
-         student.name.last.toLowerCase().includes(searchString)
-      )
+      let name = `${student.name.first.toLowerCase()} ${student.name.last.toLowerCase()}`
+      console.log(filteredData);
+      return name.includes(searchString) 
    })
    pageButtons = Math.ceil(filteredData.length / 9);
    showPage(filteredData,1)
@@ -104,4 +105,5 @@ linkList.addEventListener('click', e => {
 addPagination(data);
 addRemove(btns[0]);
 showPage(data,1);
+
 
