@@ -1,14 +1,14 @@
 /*
 Global Variables
 */
-
 const studentList = document.querySelector('.student-list')
 const linkList = document.querySelector('.link-list');
 const header = document.querySelector('.header');
 let items = linkList.getElementsByTagName('li');
 let btns = linkList.getElementsByTagName('button')
 let pageButtons = 5;
-let filteredData = data;
+let student = '';
+filteredData = data;
 
 // search function
 header.innerHTML += `
@@ -16,22 +16,21 @@ header.innerHTML += `
   <span>Search by name</span>
   <input id="search" type="text" name="searchbar" placeholder="Search by name...">
   <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
-</label>`;
-
-
-const searchBar = document.querySelector('#search');
+</label>
+`;
+const searchBar = document.getElementById('search');
 searchBar.addEventListener('keyup', (e) => {
    const searchString = e.target.value.toLowerCase();
    
+   console.log(name)
     filteredData = data.filter( student => {
-      let name = `${student.name.first.toLowerCase()} ${student.name.last.toLowerCase()}`
-      console.log(filteredData);
-      return name.includes(searchString) 
+      let name =`${student.name.first.toUpperCase()} ${student.name.last.toUpperCase()}`
+      return name.includes(searchString);
    })
    pageButtons = Math.ceil(filteredData.length / 9);
    showPage(filteredData,1)
-   addPagination(filteredData)
-   addRemove(btns[0]);
+   // addPagination(filteredData)
+   // addRemove(btns[0]);
 });
 /*
 showPage function 
@@ -85,14 +84,12 @@ addRemove function -
 */
 const first = `<button type="button">1</button>`
 function addRemove(targeted) {
-   console.log(targeted)
    addPagination(filteredData);
    for (let i = 0; i < btns.length; i++) {
       if (btns[i].textContent == targeted.innerHTML) {
          btns[i].classList.add('active');
       }
    };
-   let li = targeted.parentElement;
    showPage(data, targeted.textContent);
 }
 // Event Listeners
@@ -105,5 +102,3 @@ linkList.addEventListener('click', e => {
 addPagination(data);
 addRemove(btns[0]);
 showPage(data,1);
-
-
