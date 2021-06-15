@@ -14,7 +14,9 @@ function showPage(list,page) {
     let studentList = document.querySelector('.student-list');
     studentList.innerHTML = '';
     for (let i = start; i < end; i++) {
-        if (i >= filteredList.length){
+        if(filteredList.length == 0) {
+            studentList.innerHTML = `<h2 class="noResult">No results found</h2>`
+        } else if (i >= filteredList.length){
             break;
         } else if ( i >= start && i <= end) {
             studentList.innerHTML += `
