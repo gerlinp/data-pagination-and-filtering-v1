@@ -32,7 +32,6 @@ function showPage(list,page) {
             </li>` 
         }
     };
-
 };
 
 /*
